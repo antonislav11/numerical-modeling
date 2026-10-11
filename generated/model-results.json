@@ -1,0 +1,70 @@
+{
+  "parameters": {
+    "heat_transfer_coefficient": 0.1,
+    "pipe_radius": 5.0,
+    "thermal_conductivity": 0.683,
+    "bend_radius": 1.0,
+    "density": 1000.0,
+    "heat_capacity": 4200.0,
+    "velocity": 0.001,
+    "volumetric_heat_source": 0.0,
+    "temperature_difference": 1.0,
+    "intervals": 100,
+    "time_step": 3.125e-05,
+    "final_time": 0.1
+  },
+  "history": [
+    {
+      "coarse_step": 0.004,
+      "fine_step": 0.002,
+      "max_error": 0.0684025410433362,
+      "observed_order": null
+    },
+    {
+      "coarse_step": 0.002,
+      "fine_step": 0.001,
+      "max_error": 0.024602644242251004,
+      "observed_order": 1.4752365380533818
+    },
+    {
+      "coarse_step": 0.001,
+      "fine_step": 0.0005,
+      "max_error": 0.010873496537115335,
+      "observed_order": 1.1779974464698326
+    },
+    {
+      "coarse_step": 0.0005,
+      "fine_step": 0.00025,
+      "max_error": 0.005179616314365587,
+      "observed_order": 1.069898797561912
+    },
+    {
+      "coarse_step": 0.00025,
+      "fine_step": 0.000125,
+      "max_error": 0.002529079068590012,
+      "observed_order": 1.0342330908700992
+    },
+    {
+      "coarse_step": 0.000125,
+      "fine_step": 6.25e-05,
+      "max_error": 0.0012497828494367758,
+      "observed_order": 1.0169346943342055
+    },
+    {
+      "coarse_step": 6.25e-05,
+      "fine_step": 3.125e-05,
+      "max_error": 0.00062125424818682,
+      "observed_order": 1.0084217303961684
+    }
+  ],
+  "boundary_residuals": {
+    "inlet": 0.0,
+    "outlet": 0.0,
+    "axis": 0.0,
+    "wall": 2.609024107869118e-15
+  },
+  "tolerance": 0.001,
+  "reference_axis_max_error": 0.0,
+  "temperature_min": 0.0,
+  "temperature_max": 1.0
+}
