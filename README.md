@@ -54,7 +54,8 @@ python check_saved_result.py
 - [reproduce.py](reproduce.py) — повторяет расчёт и сравнивает осевой профиль с сохранённым.
 - [check_saved_result.py](check_saved_result.py) — короткий пример контроля допуска и граничных невязок по сохранённому результату.
 - [heat-results.json](heat-results.json) — параметры, история сходимости и контрольные значения.
-- [saved-field.csv](saved-field.csv) — полное температурное поле.
+- [saved-field.csv](saved-field.csv) — сохранённый осевой профиль из исходной работы.
+- [reproduced-field.csv](reproduced-field.csv) — полное поле 101 × 101, полученное при повторении расчёта.
 
 ### Для каких аналитических задач это полезно
 
