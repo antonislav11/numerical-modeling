@@ -19,7 +19,7 @@ permissions:
 
 jobs:
   rebuild:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     timeout-minutes: 15
     permissions:
       contents: write
@@ -39,8 +39,27 @@ jobs:
       - name: Rebuild and validate all generated figures
         run: python build_portfolio.py
       - name: Publish build report
-        run: cat generated/REPORT.md >> "$GITHUB_STEP_SUMMARY"
-      - uses: actions/upload-artifact@v4
+        run: |
+          python - <<'PY'
+          import os
+          import re
+          from pathlib import Path
+          from posixpath import normpath
+          base = os.environ['GITHUB_SERVER_URL'] + '/' + os.environ['GITHUB_REPOSITORY']
+          def link(match):
+              image, label, path = match.groups()
+              if '://' in path or path.startswith('#'):
+                  return match.group(0)
+              target = normpath('generated/' + path)
+              url = base + '/blob/main/' + target
+              if image:
+                  url += '?raw=true'
+              return image + '[' + label + '](' + url + ')'
+          report = re.sub(r'(!?)\[([^\]]+)\]\(([^)]+)\)', link, Path('generated/REPORT.md').read_text())
+          with open(os.environ['GITHUB_STEP_SUMMARY'], 'a') as summary:
+              summary.write(report)
+          PY
+      - uses: actions/upload-artifact@v7
         with:
           name: generated-charts
           path: generated/
