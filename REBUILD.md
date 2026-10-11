@@ -13,6 +13,14 @@ python build_portfolio.py
 
 Параметры задаются в [model-parameters.json](model-parameters.json): физические величины, сетка, начальный временной шаг, конечное время и допуск. Начальный шаг автоматически уменьшается до выполнения критерия Рунге. Можно передать другую конфигурацию: `python build_portfolio.py --config /path/to/parameters.json`.
 
+## Проверка расчёта
+
+```bash
+python -m pip install -r requirements.txt
+python reproduce.py
+python check_saved_result.py
+```
+
 ## На GitHub
 
 Сохраните изменения параметров или Python-кода в main: **Actions → Rebuild charts** запустится автоматически. Для запуска вручную используйте **Run workflow → main → Run workflow**.
