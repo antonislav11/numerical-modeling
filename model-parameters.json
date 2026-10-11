@@ -1,0 +1,17 @@
+{
+  "parameters": {
+    "heat_transfer_coefficient": 0.1,
+    "pipe_radius": 5.0,
+    "thermal_conductivity": 0.683,
+    "bend_radius": 1.0,
+    "density": 1000.0,
+    "heat_capacity": 4200.0,
+    "velocity": 0.001,
+    "volumetric_heat_source": 0.0,
+    "temperature_difference": 1.0,
+    "intervals": 100,
+    "time_step": 0.001,
+    "final_time": 0.1
+  },
+  "tolerance": 0.001
+}
