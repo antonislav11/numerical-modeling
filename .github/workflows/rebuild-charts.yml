@@ -29,6 +29,8 @@ jobs:
       PYTHONHASHSEED: '0'
     steps:
       - uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
       - uses: actions/setup-python@v6
         with:
           python-version: '3.12'
@@ -65,7 +67,7 @@ jobs:
           path: generated/
           retention-days: 14
           if-no-files-found: error
-      - name: Update generated files without deleting original materials
+      - name: Publish charts and tables
         run: |
           git add -- generated/
           if git diff --cached --quiet; then
@@ -75,4 +77,16 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git commit -m "Rebuild charts from source code"
-          git push origin HEAD:main
+          for attempt in 1 2 3; do
+            git fetch origin main
+            if ! git diff --quiet "$GITHUB_SHA" origin/main -- '*.py' requirements-rebuild.txt '*.csv.gz' model-parameters.json .github/workflows/rebuild-charts.yml; then
+              echo "Calculation inputs changed; a newer build will publish the results."
+              exit 0
+            fi
+            git rebase origin/main
+            if git push origin HEAD:main; then
+              exit 0
+            fi
+          done
+          echo "Could not publish after three attempts."
+          exit 1
