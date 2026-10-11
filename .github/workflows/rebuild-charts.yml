@@ -1,0 +1,59 @@
+name: Rebuild charts
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '*.py'
+      - 'requirements-rebuild.txt'
+      - 'model-parameters.json'
+      - '.github/workflows/rebuild-charts.yml'
+  workflow_dispatch:
+
+concurrency:
+  group: charts-${{ github.ref }}
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+
+jobs:
+  rebuild:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    permissions:
+      contents: write
+    env:
+      MPLBACKEND: Agg
+      MPLCONFIGDIR: /tmp/portfolio-matplotlib
+      PYTHONHASHSEED: '0'
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-python@v6
+        with:
+          python-version: '3.12'
+          cache: pip
+          cache-dependency-path: requirements-rebuild.txt
+      - name: Install plotting dependencies
+        run: python -m pip install -r requirements-rebuild.txt
+      - name: Rebuild and validate all generated figures
+        run: python build_portfolio.py
+      - name: Publish build report
+        run: cat generated/REPORT.md >> "$GITHUB_STEP_SUMMARY"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: generated-charts
+          path: generated/
+          retention-days: 14
+          if-no-files-found: error
+      - name: Update generated files without deleting original materials
+        run: |
+          git add -- generated/
+          if git diff --cached --quiet; then
+            echo "Figures and tables are already current."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -m "Rebuild charts from source code"
+          git push origin HEAD:main
