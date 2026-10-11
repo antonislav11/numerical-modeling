@@ -8,14 +8,14 @@
   },
   "code_sha256": {
     "heat_model.py": "fd7edb986ed4c8d63bb8cf79003dff40e028f404900ba6f6793cb39f5e19ad8b",
-    "build_portfolio.py": "a2f4e36e3f8294fe92e615de20545215f34e37c9d6a1d244bfb7ba29c68048f8",
+    "build_portfolio.py": "a1e8fa07bc8db3fd0bafa2ae388867bc0844f66d291ea4046a5b6cc8553a48fe",
     "requirements-rebuild.txt": "af9c9ea6a882ecdb9816a50416e4e777ff38447e9caf3b8e4c630ce2f227d324"
   },
   "files": {
     "model-results.json": "d59c4dd98a24c80930ab181cfbcbb0d3e51b355614c8e5534ed82320f6f9eada",
     "temperature-field.csv": "3eb4286785f1bffe0d192f578f1ff1401a44622073daf8c35ebd5adabb28bd6f",
     "convergence.csv": "18600c8f8083266a2da4e7bdf74a6ddc93639545e510692a96213ebf110339c5",
-    "REPORT.md": "038b6a5bac7b2294b430d7fd881ddf2dd592bd5df829a5f7a186e9c99009e2a6",
+    "REPORT.md": "edd9cb0876f605fd40981f0895497124453db8142e85ab8089cabc28681e681b",
     "heat-overview.png": "acbd478d55696419d18305160ebb7f69056ed4cee4030d71b629f17be302c3e3",
     "heat-overview.svg": "091c260d9ac216fb12723a418dff2ae12c047a604b0e01f12251b0a0af125a64",
     "heat-axis.png": "e73b69f48564c774ecf6a70eb8c2d03f22ba829dcc69111175db625cab6a5b65",
