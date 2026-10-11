@@ -6,14 +6,6 @@
 
 ## Теплообмен на Python: расчёт и контроль сходимости
 
-### Сборка графиков из кода
-
-[![Состояние автоматической сборки](https://github.com/antonyakovlev11/numerical-modeling/actions/workflows/rebuild-charts.yml/badge.svg)](https://github.com/antonyakovlev11/numerical-modeling/actions/workflows/rebuild-charts.yml)
-
-**[Последние расчёты и графики →](generated/REPORT.md)** · [Как обновлять](REBUILD.md) · [Код сборки](build_portfolio.py)
-
-Графики строю из данных и Python-кода. После изменения данных, параметров или кода GitHub Actions запускает расчёт, проверяет результаты и публикует их в `generated/`. Для ручного запуска использую **Run workflow** во вкладке Actions.
-
 В разборе ниже использую исходный учебный набор. Результаты для текущих данных и параметров доступны в [отчёте расчёта](generated/REPORT.md).
 
 Я решил учебную задачу конвективного теплообмена с помощью NumPy: рассчитал температурное поле и проверил точность, последовательно уменьшая временной шаг.
@@ -65,16 +57,7 @@ solution = solve(parameters, snapshot_times=())
 print(solution.temperature.shape)  # (101, 101)
 ```
 
-### Как повторить и проверить
-
-```bash
-python -m pip install -r requirements.txt
-python reproduce.py
-python check_saved_result.py
-# Дополнительно: пересчитать параметры и построить графики
-python -m pip install -r requirements-rebuild.txt
-python build_portfolio.py
-```
+### Код и результаты
 
 - [heat_model.py](heat_model.py) — решатель задачи конвективного теплообмена на NumPy.
 - [reproduce.py](reproduce.py) — повторяет расчёт и сравнивает осевой профиль с контрольными значениями.
